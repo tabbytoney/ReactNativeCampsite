@@ -44,7 +44,3 @@ const AboutScreen = () => {
 };
 
 export default AboutScreen;
-
-// {messages.map((message, index) => (
-//         <CandyColoredHeart key={index} msg={message} />
-//       )
