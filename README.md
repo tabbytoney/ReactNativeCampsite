@@ -11,3 +11,5 @@ Built during bootcamp course on React Native
 
 
 ![Screen Shot 2022-06-23 at 7 57 20 PM](https://user-images.githubusercontent.com/60009709/175438893-238a7cc5-1cce-45b0-8ade-46671c77d394.png)
+<img width="302" alt="image" src="https://user-images.githubusercontent.com/60009709/176955032-6f4251c0-3097-49a6-acb0-627aff2dd77b.png">
+
