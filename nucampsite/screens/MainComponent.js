@@ -1,9 +1,7 @@
-import { Platform, View, StyleSheet, Image, Text } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
 import CampsiteInfoScreen from './CampsiteInfoScreen';
 import DirectoryScreen from './DirectoryScreen';
-import ReservationScreen from './ReservationScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
@@ -13,6 +11,8 @@ import {
 import HomeScreen from './HomeScreen';
 import AboutScreen from './AboutScreen';
 import ContactScreen from './ContactScreen';
+import ReservationScreen from './ReservationScreen';
+import { Icon } from 'react-native-elements';
 import logo from '../assets/images/logo.png';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -22,17 +22,15 @@ import { fetchPromotions } from '../features/promotions/promotionsSlice';
 import { fetchComments } from '../features/comments/commentsSlice';
 import FavoritesScreen from './FavoritesScreen';
 import LoginScreen from './LoginScreen';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
 
 const Drawer = createDrawerNavigator();
 
 const screenOptions = {
-  headerStyle: {
-    backgroundColor: '#5637DD',
-  },
   headerTintColor: '#fff',
+  headerStyle: { backgroundColor: '#5637DD' },
 };
 
-// for stack navigation
 const HomeNavigator = () => {
   const Stack = createStackNavigator();
   return (
@@ -154,10 +152,15 @@ const LoginNavigator = () => {
       <Stack.Screen
         name='Login'
         component={LoginScreen}
-        options={({ navigation }) => ({
+        options={({ navigation, route }) => ({
+          headerTitle: getFocusedRouteNameFromRoute(route),
           headerLeft: () => (
             <Icon
-              name='sign-in'
+              name={
+                getFocusedRouteNameFromRoute(route) === 'Register'
+                  ? 'user-plus'
+                  : 'sign-in'
+              }
               type='font-awesome'
               iconStyle={styles.stackIcon}
               onPress={() => navigation.toggleDrawer()}
@@ -222,6 +225,7 @@ const Main = () => {
     dispatch(fetchPartners());
     dispatch(fetchComments());
   }, [dispatch]);
+
   return (
     <View
       style={{
@@ -297,7 +301,6 @@ const Main = () => {
             ),
           }}
         />
-
         <Drawer.Screen
           name='Favorites'
           component={FavoritesNavigator}
@@ -314,7 +317,6 @@ const Main = () => {
             ),
           }}
         />
-
         <Drawer.Screen
           name='About'
           component={AboutNavigator}
@@ -331,7 +333,6 @@ const Main = () => {
             ),
           }}
         />
-
         <Drawer.Screen
           name='Contact'
           component={ContactNavigator}
