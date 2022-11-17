@@ -1,6 +1,5 @@
 # ReactNativeCampsite
-
-Built during bootcamp course on React Native
+An app for campsites built with React Native as part of bootcamp coursework.
 
 ##To run:
 1. npm i
